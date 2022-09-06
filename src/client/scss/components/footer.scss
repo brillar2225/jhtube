@@ -1,0 +1,12 @@
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  background-color: $nav;
+  font-size: 15px;
+  line-height: 1.1538461538;
+  color: $before-hover;
+}

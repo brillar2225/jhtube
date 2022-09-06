@@ -1,0 +1,14 @@
+extends ./templates/layout
+include ./mixins/video
+
+block content
+    each video in videos
+      .video__align
+        +video(video)
+    else 
+      .msg__notice
+        h1 Nothing Found.
+        h2 Upload videos!
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

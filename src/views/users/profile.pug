@@ -1,0 +1,24 @@
+extends ../templates/layout
+include ../mixins/video
+
+block content
+  section.profile__container 
+    h1.sr-only #{user.nickname}&#39;s uploaded videos 
+    .profile__userdata
+      img(src=user.socialLogin === false ? '/' + user.avatarUrl : user.avatarUrl, alt="profile image").profile__avatar
+      if loggedInUser._id !== user.id
+        h3.profile__name=user.nickname
+      else 
+        a(href=`${user.id}/my-account`).profile__name--link Edit #{user.nickname}&#39;s account
+    each item in user.videos
+      .video__align
+        +video(item)
+        +video(item)
+        +video(item)
+        
+    else
+      .msg__notice
+        h1 Nothing Found.
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

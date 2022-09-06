@@ -1,0 +1,15 @@
+extends ../templates/layout
+include ../mixins/video
+
+block content
+  section.search__result
+    h1.search__title #{pageTitle} by #{keywords}
+    .videos__grid
+      each video in videos
+        +video(video)
+      else 
+        .msg__notice
+          h1 Nothing Found.
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

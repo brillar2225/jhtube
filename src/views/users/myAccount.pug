@@ -1,0 +1,27 @@
+extends ../templates/layout
+
+block content
+  section.account__container
+    h1.sr-only Edit the profile from the below form.
+    if errMsg 
+      h2=errMsg
+    .account__box
+      h1.account__title Update the profile
+      img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile image").account__avatar
+      form(method="POST" enctype='multipart/form-data').account__form
+        input(type="file", id='avatar', name="avatar", accept='image/*').account__input--avatar
+        label(for="nickname").account__label Nickame
+        input(name='nickname',id='nickname', type="text", placeholder='Edit Nickname', required, value=loggedInUser.nickname).account__input
+        label(for="email").account__label E-Mail 
+        input(name='email',id='email', type="email", placeholder='Edit Email', required, value=loggedInUser.email).account__input
+        label(for="username").account__label Username
+        input(name='username',id='username', type="text", placeholder='Edit Username', required, value=loggedInUser.username).account__input
+        label(for="location").account__label Location
+        input(name='location',id='location', type="text", placeholder='Edit Location', required, value=loggedInUser.location).account__input
+        input(type="submit", value="Update Profile")
+      if !loggedInUser.socialLogin
+        .account__pw-link
+          a(href="my-account/password") Change Password 
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js') 

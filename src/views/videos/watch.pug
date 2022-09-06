@@ -1,0 +1,84 @@
+extends ../templates/layout
+
+block content
+  section.video__container 
+    h1.sr-only This video is #{video.title} created by #{video.owner.nickname}.
+    article(data-id=video._id)#videoBox.video__box
+      h1.sr-only This section has video and its controllers.
+      video(src=`/${video.fileUrl}`)
+      #videoController.video__controller
+        .video__play 
+          button(title='Play(space/k)')#playBtn.video__play-btn
+            i.fa-solid.fa-play
+        #volume.video__volume
+          button(title='Muted(m)')#muteBtn.video__volume-btn
+            i.fa-solid.fa-volume-low
+          input(type="range", name="volumeRange", step='0.1', value='0.5', min='0', max='1')#volRange.video__volume-range
+        #videoTime.video__timebox
+          sapn#currentTime 00:00
+          span  /  
+          span#totalTime 00:00
+        input(type="range", name="timeline", step='0.1', min='0', value='0')#timeline.video__timeline
+        .video__screen
+          button(title='Full Screen(f)')#fullScreen.video__screen-btn
+            i.fa-solid.fa-expand
+    article.video__data 
+      h1.sr-only The infomations of this video
+      .video__infos 
+        ul.video__hashtags
+          each hashtag in hashtags
+            li.video__hashtag
+              a(href=`/result?keywords=${hashtag}`).video__hashtag__link ##{hashtag}
+        .video__details 
+          h2.video__title=video.title
+          h3.video__desc=video.desc 
+          span.video__createdAt Uploaded at #{new Date(video.createdAt).toLocaleDateString("en-kr", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}
+          span.video__views #{video.meta.views} #{views === '0' || '1' ? 'view' : 'views'}
+          if String(video.owner._id) === String(loggedInUser._id) 
+            .video__btn__group
+              a(href=`${video.id}/delete`).video__btn.video__btn--empty Delete 
+              a(href=`${video.id}/edit`).video__btn.video__btn--fill Edit
+        .video__owner 
+          a(href=`/users/${video.owner.id}`).video__owner__link
+            img(src=video.owner.socialLogin === false ? '/' + video.owner.avatarUrl : video.owner.avatarUrl, alt="profile image").video__avatar
+            h4.video__nickname=video.owner.nickname 
+    article.video__comment
+      h1.sr-only Write a comment here.
+      form(action=!loggedIn ? '/login' : `/api/videos/${video._id}/comments`)#commentForm.video__form
+        textarea#commentTextarea(placeholder=loggedIn ? 'Write a comment...' : 'Login first to wirte a comment.')
+        .video__btn__box
+          #btnGroup.video__btn__group
+            if !loggedIn 
+              button#loginBtn.video__btn.video__btn--empty Login
+            else 
+              button#exitBtn.video__btn.video__btn--empty Exit
+              button.video__btn.video__btn--fill Send
+      .video__comments
+        ul.video__comments__ul
+          each comment in video.comments.reverse()
+            li.video__comments__li(data-id=comment.id)
+              a(href=`/users/${comment.owner.id}`).video__comments__link 
+                if !comment.owner.avatarUrl
+                  span.video__comments__avatar 😊
+                else
+                  img.video__comments__avatar(src=comment.owner.socialLogin === false ? '/' + comment.owner.avatarUrl : comment.owner.avatarUrl, alt="profile avatar")
+              .video__comments__infos
+                .video__comments__content
+                  h4.video__comments__nickname=comment.owner.nickname
+                  span.video__comments__createdAt #{new Date(comment.createdAt).toLocaleString('en-KR', {year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', hour12: false})}
+                h5.video__comments__text=comment.text
+                form.video__comments__edit__form 
+                  textarea.video__comments__edit__textarea
+                  button.video__comments__edit__sendBtn Send
+              if String(comment.owner._id) === String(loggedInUser._id)
+                .video__comments__menubar 
+                  button.video__comments__menu.video__comments__editBtn Edit
+                  button.video__comments__menu.video__comments__deleteBtn Delete 
+                .video__comments__menuBtn
+                  i.fa-solid.fa-ellipsis-vertical
+block scripts
+  script(src='/assets/js/toggleNavbar.js')
+  script(src='/assets/js/videoPlayer.js')
+  script(src='/assets/js/comments.js')
+  if loggedIn 
+    script(src='/assets/js/loggedInComments.js')

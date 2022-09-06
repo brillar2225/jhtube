@@ -1,0 +1,33 @@
+extends ../templates/layout
+
+block content
+  section.input-forms__container 
+    h1.sr-only Login Page
+    if errMsg 
+      h2=errMsg
+    .input-forms__box
+      h1.input-forms__title Sign In
+      form(method="POST").input-forms__form
+        label.input-forms__label(for='username') Username
+        input.input-forms__input(type='text', name='username', id='username', placeholder='Enter username', required)
+        label.input-forms__label(for="password") Password
+        input.input-forms__input(type='password', name='password', id='password', placeholder='Enter password', required)
+        input(type='submit', value='Login')
+        .hr__box
+          hr.hr__bar
+          span.hr__text OR
+          hr.hr__bar
+        .login__social 
+          a(href="/users/kakao/start").login__social__link.login__social__link--ka 
+            i.fa-solid.fa-comment
+            | Login with KaKaoTalk
+          a(href="/users/github/start").login__social__link.login__social__link--git 
+            i.fa-brands.fa-github
+            | Login with Github
+        .link__box
+          .link__hr
+          span Don't have an account? 
+          a(href='/join') Create one now
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

@@ -1,0 +1,109 @@
+@import '../config/mixin';
+
+// SCSS Animation
+@include showAndHide {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+// Shared elements
+.link__box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.1428571429;
+  .link__hr {
+    width: 100%;
+    height: 1px;
+    border-top: 2px solid #ffffff;
+  }
+  span {
+    margin-top: 10px;
+  }
+  a {
+    display: block;
+    padding: 10px 15px;
+    margin: 15px 0 10px;
+    height: 40px;
+    border: 1px solid #e9e9ed;
+    border-radius: 10px;
+    text-align: center;
+    transition: all 500ms ease-out;
+    &:hover {
+      font-weight: 500;
+      border: none;
+      background-color: #c5c5c5;
+      color: #000000;
+    }
+  }
+}
+
+.video__btn__group {
+  margin-top: 10px;
+  .video__btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 48px;
+    height: 33px;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  .video__btn--empty {
+    border: 1px solid $white-bg;
+    background: none;
+    color: $white-bg;
+    transition: all 500ms ease-out;
+    &:hover {
+      border: none;
+      background-color: $white-bg;
+      color: #030303;
+    }
+  }
+  .video__btn--fill {
+    margin-left: 10px;
+    border: none;
+    background-color: #ffffff1a;
+    color: #717171;
+    transition: all 500ms ease-out;
+    &:hover {
+      border: 1px solid #6ebcff;
+      background-color: #6ebcff;
+      color: #030303;
+    }
+  }
+}
+
+.message {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  padding: 10px 20px;
+  max-width: 200px;
+  border-radius: 10000px;
+  color: white;
+  text-align: center;
+  animation: showAndHide 0.5s ease-in-out forwards;
+  animation-delay: 5s;
+  &.success {
+    background-color: #304ffe;
+  }
+  &.info {
+    background-color: #ff6f00;
+  }
+  &.error {
+    background-color: $logo-red;
+  }
+}

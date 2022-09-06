@@ -1,0 +1,18 @@
+extends ../templates/layout
+
+block content
+  section.input-forms__container 
+    h1.sr-only Edit the video&#39;s infomations from the below form.
+    .input-forms__box 
+      h1.input-forms__title Change Title of video
+      form(method='POST').input-forms__form
+        label(for="title").input-forms__label Title
+        input(name='title',id='title', type='text', placeholder='Video Title', value=video.title, required).input-forms__input
+        label(for="desc").input-forms__label Description
+        input(name='desc',id='desc', type='text', placeholder='desc', value=video.desc, minlenth='20', required).input-forms__input
+        label(for="hashtags").input-forms__label Hashtags
+        input(name='hashtags',id='hashtags', placeholder='Hashtags, separated by comma',value=video.hashtags.join(), required).input-forms__input
+        input(value='Save', type='submit')
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

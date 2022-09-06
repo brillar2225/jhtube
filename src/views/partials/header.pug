@@ -1,0 +1,30 @@
+header 
+  .header__logo
+    a(href='/').header__logo__link
+      i.fa-brands.fa-youtube 
+      |  JHTube
+  .header__search
+    form(action='/result', method="GET").header__search__form 
+      input(type="text", name="keywords", placeholder='Search', required)#searchInput.header__search__input
+      span#searchBtn.header__search__btn
+        i.fa-solid.fa-magnifying-glass
+  nav#menuNav.header__nav 
+    ul.header__ul 
+      if !loggedIn
+        li.header__li 
+          a(href="/join") Join 
+        li.header__li.header__li--login
+          a(href="/login") Login 
+      else 
+        li.header__li
+          a(href="/videos/upload") Upload 
+        li.header__li
+          a(href="/users/logout") Logout 
+        li.header__li.header__li__profile
+          a(href=`/users/${loggedInUser._id}`)
+            if !loggedInUser.avatarUrl
+              span 😊
+            else
+              img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile avatar").header__li--avatar
+  .header__toggle
+    i.fa-solid.fa-bars 

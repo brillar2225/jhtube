@@ -1,0 +1,62 @@
+@import '../config/mixin';
+
+.profile__container {
+  display: flex;
+  flex-direction: column;
+  .profile__userdata {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    line-height: 1.1052631579;
+    font-weight: 600;
+    img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+    }
+    .profile__name,
+    .profile__name--link {
+      margin: 20px 0 30px;
+    }
+  }
+}
+
+@include tablet {
+  .profile__container {
+    .profile__userdata {
+      font-size: 23px;
+      line-height: 1.0952380952;
+      img {
+        width: 260px;
+        height: 260px;
+      }
+      .profile__name {
+        margin: 25px 0 40px;
+      }
+      .profile__name--link {
+        margin: 25px 0 40px;
+      }
+    }
+  }
+}
+
+@include desktop {
+  .profile__container {
+    .profile__userdata {
+      font-size: 25px;
+      line-height: 1.0869565217;
+      img {
+        width: 270px;
+        height: 270px;
+      }
+      .profile__name {
+        margin: 30px 0 50px;
+      }
+      .profile__name--link {
+        margin: 30px 0 50px;
+      }
+    }
+  }
+}

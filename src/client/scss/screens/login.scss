@@ -1,0 +1,59 @@
+.hr__box {
+  display: flex;
+  align-items: center;
+  padding: 25px 0 10px;
+  width: 100%;
+  .hr__text {
+    padding: 10px;
+    font-size: 16px;
+    line-height: 1.1428571429;
+    font-weight: 500;
+  }
+  .hr__bar {
+    flex: auto;
+    border: none;
+    border-top: 2px solid $white-bg;
+    height: 1px;
+  }
+}
+.login__social {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
+  font-weight: 600;
+  color: #000000;
+  .login__social__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+  }
+  .login__social__link--ka {
+    background-color: #fae100;
+    transition: all 500ms ease-in-out;
+    &:hover {
+      font-size: 17px;
+      line-height: 1.1333333333;
+    }
+    .fa-solid.fa-comment {
+      margin-right: 5px;
+    }
+  }
+  .login__social__link--git {
+    // background-color: #e44c30;
+    background-color: #2ea650;
+    transition: all 500ms ease-in-out;
+    &:hover {
+      font-size: 17px;
+      line-height: 1.1333333333;
+    }
+    .fa-brands.fa-github {
+      margin-right: 5px;
+    }
+  }
+}

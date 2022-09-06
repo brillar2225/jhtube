@@ -1,0 +1,24 @@
+extends ../templates/layout
+
+block content
+  section.input-forms__container
+    h1.sr-only Upload a video from the below form.
+    .input-forms__box
+      h1.input-forms__title Upload a video
+      form.input-forms__form(method="POST", enctype="multipart/form-data") 
+        label.input-forms__label(for="title") Title
+        input.input-forms__input(type="text", name="title", id="title", placeholder="Enter the title", maxlength="40" required)
+        label.input-forms__label(for="desc") Description 
+        input.input-forms__input(type="text", name="desc", id="desc", placeholder="Enter the description", minlength="15" required)
+        label.input-forms__label(for="hashtags") Hashtags
+        input.input-forms__input(type="text", name="hashtags", id="hashtags", placeholder="Required comma between words without space")
+        label.input-forms__label(for="video")
+        input.input-forms__input(type="file", name="video", id="video", accept="video/*", required)
+        input.input-forms__input--upload(type="submit", value="Upload Video")
+      .upload__record
+        a.upload__record__link(href='/videos/record')
+          i.fa-solid.fa-video 
+          |  Recording
+
+block scripts 
+  script(src='/assets/js/toggleNavbar.js')

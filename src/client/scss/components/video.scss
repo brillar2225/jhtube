@@ -1,0 +1,41 @@
+@import '../config/mixin';
+
+.video-mixin {
+  width: 258px;
+  margin: 10px 0 20px;
+  .video-mixin__thumb {
+    height: 188px;
+    border-radius: 7px;
+    width: 100%;
+    background-color: ivory;
+  }
+  .video-mixin__data {
+    padding: 8px 15px 0;
+    .video-mixin__title {
+      font-size: 16px;
+      line-height: 1.1428571429;
+      color: #ffffff;
+    }
+    .video-mixin__meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 5px;
+      font-size: 14px;
+      line-height: 1.1666666667;
+      color: $before-hover;
+      .video-mixin__nickname {
+        transition: all 1000ms ease-out;
+        &:hover {
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+
+@include desktop {
+  .video-mixin {
+    width: 300px;
+  }
+}
