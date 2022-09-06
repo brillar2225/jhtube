@@ -25,12 +25,33 @@
         height: 40px;
         border: none;
         border-radius: 20px;
+        background-color: $logo-red;
+        font-size: 18px;
+        line-height: 1.125;
+        cursor: pointer;
+        transition: all 500ms ease-in-out;
+        &:hover {
+          border: 1px solid $logo-red;
+          background-color: transparent;
+          color: #ffffff;
+        }
       }
       .recorder__downloadBtn {
         width: 45%;
         height: 40px;
-        border: none;
+        border: 1px solid $logo-red;
         border-radius: 20px;
+        background-color: transparent;
+        font-size: 18px;
+        line-height: 1.125;
+        color: #ffffff;
+        cursor: pointer;
+        transition: all 500ms ease-in-out;
+        &:hover {
+          border: none;
+          background-color: $logo-red;
+          color: #000000;
+        }
       }
     }
   }
