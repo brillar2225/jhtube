@@ -50,11 +50,11 @@ export const search = async (req, res) => {
   }
 };
 
-export const getRecord = (req, res) => {
-  return res.render('videos/recording', { pageTitle: 'Recording' });
+export const getRecorder = (req, res) => {
+  return res.render('videos/recorder', { pageTitle: 'Video Recorder' });
 };
 
-export const postRecord = (req, res) => {
+export const postRecorder = (req, res) => {
   return res.send('post record');
 };
 

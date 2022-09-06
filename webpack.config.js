@@ -10,6 +10,7 @@ module.exports = {
     videoPlayer: BASE_PATH + 'videoPlayer.js',
     comments: BASE_PATH + 'comments.js',
     loggedInComments: BASE_PATH + 'loggedInComments.js',
+    recorder: BASE_PATH + 'recorder.js',
   },
   mode: 'development',
   watch: true,

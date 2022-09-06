@@ -1,0 +1,13 @@
+extends ../templates/layout
+
+block content 
+  section.recorder__container
+    h1.sr-only Record video and upload on JHTube.
+    article.recorder__box
+      video#preview.recorder__preview 
+      .recorder__controllers
+        button#startBtn.recorder__startBtn Start recording
+        button#downloadBtn.recorder__downloadBtn Download
+
+block scripts
+  script(src='/assets/js/recorder.js')
