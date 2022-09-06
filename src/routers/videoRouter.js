@@ -1,7 +1,6 @@
 import express from 'express';
 import {
   getRecorder,
-  postRecorder,
   getUpload,
   postUpload,
   watchVideo,
@@ -13,11 +12,7 @@ import { protectOnly, multerVideo } from '../middlewares';
 
 const videoRouter = express.Router();
 
-videoRouter
-  .route('/recorder')
-  .all(protectOnly)
-  .get(getRecorder)
-  .post(postRecorder);
+videoRouter.route('/recorder').all(protectOnly).get(getRecorder);
 videoRouter
   .route('/upload')
   .all(protectOnly)

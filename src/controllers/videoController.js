@@ -54,10 +54,6 @@ export const getRecorder = (req, res) => {
   return res.render('videos/recorder', { pageTitle: 'Video Recorder' });
 };
 
-export const postRecorder = (req, res) => {
-  return res.send('post record');
-};
-
 export const getUpload = (req, res) => {
   return res.render('videos/upload', { pageTitle: 'Upload' });
 };
