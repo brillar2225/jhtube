@@ -25,6 +25,6 @@ header
             if !loggedInUser.avatarUrl
               span 😊
             else
-              img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile avatar").header__li--avatar
+              img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile avatar", crossorigin).header__li--avatar
   .header__toggle
     i.fa-solid.fa-bars 

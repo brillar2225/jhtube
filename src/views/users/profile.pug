@@ -5,7 +5,7 @@ block content
   section.profile__container 
     h1.sr-only #{user.nickname}&#39;s uploaded videos 
     .profile__userdata
-      img(src=user.socialLogin === false ? '/' + user.avatarUrl : user.avatarUrl, alt="profile image").profile__avatar
+      img(src=user.socialLogin === false ? '/' + user.avatarUrl : user.avatarUrl, alt="profile image", crossorigin).profile__avatar
       if loggedInUser._id !== user.id
         h3.profile__name=user.nickname
       else 

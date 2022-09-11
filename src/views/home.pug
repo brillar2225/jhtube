@@ -2,9 +2,9 @@ extends ./templates/layout
 include ./mixins/video
 
 block content
+  .video__align
     each video in videos
-      .video__align
-        +video(video)
+      +video(video)
     else 
       .msg__notice
         h1 Nothing Found.

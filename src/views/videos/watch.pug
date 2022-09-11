@@ -36,11 +36,11 @@ block content
           span.video__views #{video.meta.views} #{views === '0' || '1' ? 'view' : 'views'}
           if String(video.owner._id) === String(loggedInUser._id) 
             .video__btn__group
-              a(href=`${video.id}/delete`).video__btn.video__btn--empty Delete 
-              a(href=`${video.id}/edit`).video__btn.video__btn--fill Edit
+              a(href=`${video.id}/edit`).video__btn.video__btn--empty Edit
+              a(href=`${video.id}/delete`).video__btn.video__btn--fill Delete 
         .video__owner 
           a(href=`/users/${video.owner.id}`).video__owner__link
-            img(src=video.owner.socialLogin === false ? '/' + video.owner.avatarUrl : video.owner.avatarUrl, alt="profile image").video__avatar
+            img(src=video.owner.socialLogin === false ? '/' + video.owner.avatarUrl : video.owner.avatarUrl, alt="profile image", crossorigin).video__avatar
             h4.video__nickname=video.owner.nickname 
     article.video__comment
       h1.sr-only Write a comment here.
@@ -51,8 +51,8 @@ block content
             if !loggedIn 
               button#loginBtn.video__btn.video__btn--empty Login
             else 
-              button#exitBtn.video__btn.video__btn--empty Exit
-              button.video__btn.video__btn--fill Send
+              button#exitBtn.video__btn.video__btn--fill Exit
+              button.video__btn.video__btn--empty Send
       .video__comments
         ul.video__comments__ul
           each comment in video.comments.reverse()
@@ -61,7 +61,7 @@ block content
                 if !comment.owner.avatarUrl
                   span.video__comments__avatar 😊
                 else
-                  img.video__comments__avatar(src=comment.owner.socialLogin === false ? '/' + comment.owner.avatarUrl : comment.owner.avatarUrl, alt="profile avatar")
+                  img.video__comments__avatar(src=comment.owner.socialLogin === false ? '/' + comment.owner.avatarUrl : comment.owner.avatarUrl, alt="profile avatar", crossorigin)
               .video__comments__infos
                 .video__comments__content
                   h4.video__comments__nickname=comment.owner.nickname

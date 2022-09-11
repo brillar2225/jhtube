@@ -34,6 +34,7 @@ const addComment = (text, id, createdAt, user) => {
   newCommentLink.href = `/users/${user._id}`;
   newCommentAvatar.src =
     user.socialLogin !== false ? user.avatarUrl : '/' + user.avatarUrl;
+  newCommentAvatar.setAttribute('crossorigin', '');
 
   const newCommentInfos = document.createElement('div');
   const newCommentContent = document.createElement('div');

@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import morgan from 'morgan';
 import session from 'express-session';
@@ -29,6 +30,19 @@ app.use(
 
 app.use(flash());
 app.use(localsMiddleware);
+app.use(
+  cors({
+    origin: 'http://localhost:50000/',
+    credentials: true,
+  })
+);
+app.use((req, res, next) => {
+  res.header('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:50000/');
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 app.use('/uploads', express.static('uploads'));
 app.use('/assets', express.static('assets'));
 app.use('/', rootRouter);

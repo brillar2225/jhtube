@@ -185,6 +185,7 @@ export const finishKakaoLogin = async (req, res) => {
         headers: {
           Authorization: `Bearer ${access_token}`,
           'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          'Access-Control-Allow-Origin': 'http://localhost:50000/',
         },
       })
     ).json();

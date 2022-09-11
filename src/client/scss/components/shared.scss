@@ -60,13 +60,13 @@
     cursor: pointer;
   }
   .video__btn--empty {
-    border: 1px solid $white-bg;
-    background: none;
-    color: $white-bg;
+    border: 1px solid $btn-blue;
+    background: transparent;
+    color: $btn-blue;
     transition: all 500ms ease-out;
     &:hover {
       border: none;
-      background-color: $white-bg;
+      background-color: $btn-blue;
       color: #030303;
     }
   }
@@ -77,8 +77,8 @@
     color: #717171;
     transition: all 500ms ease-out;
     &:hover {
-      border: 1px solid #6ebcff;
-      background-color: #6ebcff;
+      border: 1px solid $btn-blue;
+      background-color: $btn-blue;
       color: #030303;
     }
   }
@@ -86,7 +86,7 @@
 
 .message {
   position: absolute;
-  top: 10px;
+  top: 50px;
   left: 0;
   right: 0;
   margin: 0 auto;

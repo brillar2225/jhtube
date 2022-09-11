@@ -7,7 +7,7 @@ block content
       h2=errMsg
     .account__box
       h1.account__title Update the profile
-      img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile image").account__avatar
+      img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile image", crossorigin).account__avatar
       form(method="POST" enctype='multipart/form-data').account__form
         input(type="file", id='avatar', name="avatar", accept='image/*').account__input--avatar
         label(for="nickname").account__label Nickame

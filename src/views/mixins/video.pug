@@ -1,8 +1,8 @@
 mixin video(item)
   a(href=`/videos/${item.id}`).video-mixin 
-    .video-mixin__thumb
+    .video-mixin__thumb(style=`background-image: url(${item.thumbUrl})`)
     .video-mixin__data 
       span.video-mixin__title=item.title 
       .video-mixin__meta 
         span.video-mixin__nickname=item.owner.nickname
-        span.video-mixin__views #{item.meta.views} #{views === '0' || '1' ? 'view' : 'views'} 
+        span.video-mixin__views #{item.meta.views} #{item.meta.views === 0 || item.meta.views === 1 ? 'view' : 'views'} 

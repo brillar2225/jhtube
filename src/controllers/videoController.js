@@ -63,7 +63,7 @@ export const postUpload = async (req, res) => {
     session: {
       user: { _id },
     },
-    file: { path: fileUrl },
+    files: { video, thumb },
     body: { title, desc, hashtags },
   } = req;
   try {
@@ -71,7 +71,8 @@ export const postUpload = async (req, res) => {
       title,
       desc,
       hashtags: Video.formatHashtags(hashtags),
-      fileUrl,
+      fileUrl: video[0].path,
+      thumbUrl: thumb[0].path,
       owner: _id,
     });
     const user = await User.findById(_id);
@@ -138,10 +139,12 @@ export const postEditVideo = async (req, res) => {
   const {
     params: { id },
     body: { title, desc, hashtags },
+    file: { path: thumbUrl },
     session: {
       user: { _id },
     },
   } = req;
+  console.log(thumbUrl);
   const video = await Video.findById({ _id: id });
   if (!video) {
     req.flash('info', 'Videos not found.');
@@ -155,6 +158,7 @@ export const postEditVideo = async (req, res) => {
     title,
     desc,
     hashtags: Video.formatHashtags(hashtags),
+    thumbUrl,
   });
   req.flash('success', 'Succeed to edit the video.');
   return res.redirect(`/videos/${id}`);
@@ -260,8 +264,8 @@ export const deleteComment = async (req, res) => {
     req.flash('error', 'Not Authorized. No access to delete this comment.');
     return res.status(403).redirect(`/videos/${id}`);
   }
-  await Comment.findByIdAndDelete(commentId);
   video.comments.splice(video.comments.indexOf(commentId), 1);
   video.save();
+  await Comment.findByIdAndDelete(commentId);
   return res.sendStatus(201);
 };

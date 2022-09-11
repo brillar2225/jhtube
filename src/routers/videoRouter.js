@@ -17,13 +17,19 @@ videoRouter
   .route('/upload')
   .all(protectOnly)
   .get(getUpload)
-  .post(multerVideo.single('video'), postUpload);
+  .post(
+    multerVideo.fields([
+      { name: 'video', maxCount: 1 },
+      { name: 'thumb', maxCount: 1 },
+    ]),
+    postUpload
+  );
 videoRouter.route('/:id([0-9a-f]{24})').get(watchVideo);
 videoRouter
   .route('/:id([0-9a-f]{24})/edit')
   .all(protectOnly)
   .get(getEditVideo)
-  .post(postEditVideo);
+  .post(multerVideo.single('thumb'), postEditVideo);
 videoRouter
   .route('/:id([0-9a-f]{24})/delete')
   .all(protectOnly)
