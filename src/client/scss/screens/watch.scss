@@ -209,7 +209,7 @@
       textarea {
         padding: 8px 12px;
         width: 100%;
-        max-height: 250px;
+        max-height: 200px;
         border: none;
         border-bottom: 1px solid #717171;
         background-color: transparent;
@@ -225,6 +225,13 @@
           outline: none;
           border-bottom: 1px solid #ffffff;
           color: #ffffff;
+        }
+        &::-webkit-scrollbar {
+          width: 7px;
+        }
+        &::-webkit-scrollbar-thumb {
+          border-radius: 10px;
+          background-color: #717171;
         }
       }
       .video__btn__box {
@@ -316,6 +323,13 @@
                 border: none;
                 outline: none;
                 border-bottom: 1px solid #ffffff;
+              }
+              &::-webkit-scrollbar {
+                width: 7px;
+              }
+              &::-webkit-scrollbar-thumb {
+                border-radius: 10px;
+                background-color: #717171;
               }
             }
             .video__comments__edit__sendBtn {

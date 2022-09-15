@@ -1,5 +1,5 @@
-import cors from 'cors';
 import express from 'express';
+// import cors from 'cors';
 import morgan from 'morgan';
 import session from 'express-session';
 import flash from 'express-flash';
@@ -17,6 +17,22 @@ app.use(logger);
 app.set('view engine', 'pug');
 app.set('views', process.cwd() + '/src/views');
 
+// app.use(
+//   cors({
+//     origin: 'http://localhost:50000',
+//     credentials: true,
+//   })
+// );
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:50000');
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-Requested-With, content-type, application/json'
+  );
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  next();
+});
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(
@@ -30,19 +46,6 @@ app.use(
 
 app.use(flash());
 app.use(localsMiddleware);
-app.use(
-  cors({
-    origin: 'http://localhost:50000/',
-    credentials: true,
-  })
-);
-app.use((req, res, next) => {
-  res.header('Cross-Origin-Embedder-Policy', 'require-corp');
-  res.header('Cross-Origin-Opener-Policy', 'same-origin');
-  res.header('Access-Control-Allow-Origin', 'http://localhost:50000/');
-  res.header('Access-Control-Allow-Credentials', true);
-  next();
-});
 app.use('/uploads', express.static('uploads'));
 app.use('/assets', express.static('assets'));
 app.use('/', rootRouter);

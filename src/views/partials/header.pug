@@ -22,9 +22,9 @@ header
           a(href="/users/logout") Logout 
         li.header__li.header__li__profile
           a(href=`/users/${loggedInUser._id}`)
-            if !loggedInUser.avatarUrl
-              span 😊
+            if !loggedInUser.socialLogin
+              img(src='/' + loggedInUser.avatarUrl, alt='!loggedInUser').header__li--avatar
             else
-              img(src=loggedInUser.socialLogin === false ? '/' + loggedInUser.avatarUrl : loggedInUser.avatarUrl, alt="profile avatar", crossorigin).header__li--avatar
+              img(src=loggedInUser.avatarUrl, alt="profile avatar", crossorigin).header__li--avatar
   .header__toggle
     i.fa-solid.fa-bars 

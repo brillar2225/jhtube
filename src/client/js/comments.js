@@ -15,7 +15,7 @@ const hideBtn = () => {
 
 const resizeTextarea = () => {
   setTimeout(() => {
-    textarea.style.overflow = 'scroll';
+    textarea.style.overflow = 'auto';
     textarea.style.height = 'auto';
     textarea.style.height = `${Math.floor(textarea.scrollHeight) - 6}px`;
   }, 0);
@@ -24,7 +24,7 @@ const resizeTextarea = () => {
 const resizeEditTextarea = (event) => {
   const textarea = event.target;
   setTimeout(() => {
-    textarea.style.overflow = 'scroll';
+    textarea.style.overflow = 'auto';
     textarea.style.height = 'auto';
     textarea.style.height = `${Math.floor(textarea.scrollHeight) - 6}px`;
   }, 0);

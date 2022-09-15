@@ -2,9 +2,11 @@ extends ./templates/layout
 include ./mixins/video
 
 block content
-  .video__align
+  section.home__container 
+    h1.sr-only You can search some videos on this page.
     each video in videos
-      +video(video)
+      .video__align
+        +video(video)
     else 
       .msg__notice
         h1 Nothing Found.
