@@ -12,8 +12,6 @@ module.exports = {
     loggedInComments: BASE_PATH + 'loggedInComments.js',
     recorder: BASE_PATH + 'recorder.js',
   },
-  mode: 'development',
-  watch: true,
   plugins: [
     new MiniCssExtractPlugin({
       filename: 'css/style.css',

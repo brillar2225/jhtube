@@ -46,6 +46,7 @@ export const search = async (req, res) => {
     });
   } catch (err) {
     console.error('🚫 Not Found', err);
+    req.flash('error', 'Videos not found.');
     return res.status(404).redirect('/');
   }
 };
@@ -102,7 +103,7 @@ export const watchVideo = async (req, res) => {
       },
     });
   if (!video) {
-    req.flash('info', 'Videos not found.');
+    req.flash('error', 'Videos not found.');
     return res.status(400).redirect('/');
   }
   const hashtags = video.hashtags.map((i) => i.replace('#', ''));
@@ -122,7 +123,7 @@ export const getEditVideo = async (req, res) => {
   } = req;
   const video = await Video.findById(id);
   if (!video) {
-    req.flash('info', 'Videos not found.');
+    req.flash('error', 'Videos not found.');
     return res.status(404).redirect(`/videos/${id}`);
   }
   if (String(video.owner) !== String(_id)) {
@@ -147,11 +148,11 @@ export const postEditVideo = async (req, res) => {
   console.log(thumbUrl);
   const video = await Video.findById({ _id: id });
   if (!video) {
-    req.flash('info', 'Videos not found.');
+    req.flash('error', 'Videos not found.');
     return res.status(404).redirect(`/videos/${id}`);
   }
   if (String(video.owner) !== String(_id)) {
-    req.flash('error', 'Not Authorized. No access to edit this video.');
+    req.flash('error', 'Not Authorized.');
     return res.status(401).redirect('/');
   }
   await Video.findByIdAndUpdate(id, {
@@ -160,7 +161,6 @@ export const postEditVideo = async (req, res) => {
     hashtags: Video.formatHashtags(hashtags),
     thumbUrl,
   });
-  req.flash('success', 'Succeed to edit the video.');
   return res.redirect(`/videos/${id}`);
 };
 
@@ -174,11 +174,11 @@ export const deleteVideo = async (req, res) => {
   const video = await Video.findById(id);
   const user = await User.findById(_id);
   if (!video) {
-    req.flash('info', 'Videos not found.');
+    req.flash('error', 'Videos not found.');
     return res.status(404).redirect(`/videos/${id}`);
   }
   if (String(video.owner) !== String(_id)) {
-    req.flash('error', 'Not Authorized. No access to delete this video.');
+    req.flash('error', 'Not Authorized.');
     return res.status(403).redirect('/');
   }
   await Video.findByIdAndDelete(id);
@@ -236,10 +236,11 @@ export const editComment = async (req, res) => {
   let comment = await Comment.findById(commentId).populate('owner');
   const video = await Video.findById(id).populate('comments');
   if (!video) {
+    req.flash('error', 'Videos not found.');
     return res.sendStatus(404);
   }
   if (String(user._id) !== String(comment.owner._id)) {
-    req.flash('error', 'Not Authorized. No access to edit this comment.');
+    req.flash('error', 'Not Authorized.');
     return res.status(403).redirect(`/videos/${id}`);
   }
   comment = await Comment.findByIdAndUpdate(commentId, { text }, { new: true });
@@ -258,10 +259,11 @@ export const deleteComment = async (req, res) => {
   const comment = await Comment.findById(commentId).populate('owner');
   const video = await Video.findById(id);
   if (!video) {
+    req.flash('error', 'Videos not found.');
     return res.sendStatus(404);
   }
   if (String(_id) !== String(comment.owner._id)) {
-    req.flash('error', 'Not Authorized. No access to delete this comment.');
+    req.flash('error', 'Not Authorized.');
     return res.status(403).redirect(`/videos/${id}`);
   }
   video.comments.splice(video.comments.indexOf(commentId), 1);

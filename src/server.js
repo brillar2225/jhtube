@@ -23,15 +23,15 @@ app.set('views', process.cwd() + '/src/views');
 //     credentials: true,
 //   })
 // );
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:50000');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-Requested-With, content-type, application/json'
-  );
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:50000');
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'X-Requested-With, content-type, application/json'
+//   );
+//   res.setHeader('Access-Control-Allow-Credentials', true);
+//   next();
+// });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -46,6 +46,11 @@ app.use(
 
 app.use(flash());
 app.use(localsMiddleware);
+app.use((req, res, next) => {
+  res.header('Cross-Origin-Embedder-Policy', 'require-corp');
+  res.header('Cross-Origin-Opener-Policy', 'same-origin');
+  next();
+});
 app.use('/uploads', express.static('uploads'));
 app.use('/assets', express.static('assets'));
 app.use('/', rootRouter);

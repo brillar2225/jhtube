@@ -23,7 +23,7 @@ header
         li.header__li.header__li__profile
           a(href=`/users/${loggedInUser._id}`)
             if !loggedInUser.socialLogin
-              img(src='/' + loggedInUser.avatarUrl, alt='!loggedInUser').header__li--avatar
+              img(src='/' + loggedInUser.avatarUrl, alt='!loggedInUser', crossorigin).header__li--avatar
             else
               img(src=loggedInUser.avatarUrl, alt="profile avatar", crossorigin).header__li--avatar
   .header__toggle

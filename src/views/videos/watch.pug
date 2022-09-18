@@ -58,10 +58,10 @@ block content
           each comment in video.comments.reverse()
             li.video__comments__li(data-id=comment.id)
               a(href=`/users/${comment.owner.id}`).video__comments__link 
-                if !comment.owner.avatarUrl
-                  span.video__comments__avatar 😊
+                if !comment.owner.socialLogin
+                  img.video__comments__avatar(src='/' + comment.owner.avatarUrl, alt='profile avatar', crossorigin)
                 else
-                  img.video__comments__avatar(src=comment.owner.socialLogin === false ? '/' + comment.owner.avatarUrl : comment.owner.avatarUrl, alt="profile avatar", crossorigin)
+                  img.video__comments__avatar(src=comment.owner.avatarUrl, alt="profile avatar", crossorigin)
               .video__comments__infos
                 .video__comments__content
                   h4.video__comments__nickname=comment.owner.nickname

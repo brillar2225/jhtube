@@ -35,10 +35,10 @@ export const postJoin = async (req, res) => {
       location,
       avatarUrl,
     });
-    req.flash('success', 'Succeed to sign-up. Login next.');
     return res.redirect('/login');
   } catch (error) {
     console.error(error);
+    req.flash('error', 'Failed to sign up.');
     return res.status(400).render('users/join', {
       pageTitle,
       errMsg: error._message,
@@ -123,6 +123,7 @@ export const finishGithubLogin = async (req, res) => {
       (email) => email.primary === true && email.verified === true
     );
     if (!emailObj) {
+      req.flash('info', 'Cannot find verified email.');
       return res.redirect('/login');
     }
     let user = await User.findOne({ email: emailObj.email });
@@ -211,7 +212,7 @@ export const finishKakaoLogin = async (req, res) => {
     req.session.user = user;
     return res.redirect('/');
   } else {
-    req.flash('error', 'Failed to login with Kakao Talk. Try again.');
+    req.flash('error', 'Failed to login with KakaoTalk. Try again.');
     return res.redirect('/login');
   }
 };
@@ -228,7 +229,7 @@ export const getPassword = (req, res) => {
     },
   } = req;
   if (socialLogin) {
-    req.flash('error', 'Cannot change password with this account.');
+    req.flash('info', 'Cannot change password with this account.');
   }
   return res.render('users/password', { pageTitle: 'Change Password' });
 };
@@ -275,7 +276,7 @@ export const profile = async (req, res) => {
     },
   });
   if (!user) {
-    req.flash('error', 'Cannot find user&#39;s profile.');
+    req.flash('info', 'Cannot find user&#39;s profile.');
     return res.status(404).redirect('/');
   }
   return res.render('users/profile', {
@@ -344,6 +345,5 @@ export const postEditAccount = async (req, res) => {
     { new: true }
   );
   req.session.user = updateUserdata;
-  req.flash('success', 'Succeed to edit user account.');
   return res.redirect(`/users/${_id}/my-account`);
 };
