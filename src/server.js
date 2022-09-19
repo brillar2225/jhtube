@@ -1,5 +1,5 @@
 import express from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 import morgan from 'morgan';
 import session from 'express-session';
 import flash from 'express-flash';
@@ -10,6 +10,10 @@ import videoRouter from './routers/videoRouter';
 import apiRouter from './routers/apiRouter';
 import { localsMiddleware } from './middlewares';
 
+const corsOpt = {
+  origin: 'http://localhost:50000',
+};
+
 const app = express();
 const logger = morgan('dev');
 app.use(logger);
@@ -17,12 +21,7 @@ app.use(logger);
 app.set('view engine', 'pug');
 app.set('views', process.cwd() + '/src/views');
 
-// app.use(
-//   cors({
-//     origin: 'http://localhost:50000',
-//     credentials: true,
-//   })
-// );
+app.use(cors(corsOpt.origin));
 // app.use((req, res, next) => {
 //   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:50000');
 //   res.setHeader(
